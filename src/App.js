@@ -9,7 +9,7 @@ import ToDo from './components/ToDo.js';
       todos: [
         { description: 'Walk the cat', isCompleted: true },
         { description: 'Thow the dishes away', isCompleted: false },
-        { descriptoin: 'Buy new dishes', isCompleted: false }
+        { description: 'Buy new dishes', isCompleted: false }
       ]
     };
   }
