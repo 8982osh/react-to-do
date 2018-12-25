@@ -3,17 +3,6 @@ import './App.css';
 import ToDo from './components/ToDo.js';
 
 
- class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: [
-        { description: 'Walk the cat', isCompleted: true },
-        { description: 'Thow the dishes away', isCompleted: false },
-        { description: 'Buy new dishes', isCompleted: false }
-      ]
-    };
-
 class App extends Component {
    constructor(props) {
      super(props);
@@ -24,7 +13,8 @@ class App extends Component {
           { description: 'Buy new dishes', isCompleted: false }
         ],
         newTodoDescripton: ''
-      };    
+      }; 
+      this.deleteTodo = this.deleteTodo.bind(this); //binding necessary to make this work in callback  
    }
 
   handleChange(e) {
@@ -38,13 +28,24 @@ class App extends Component {
     this.setState({ todos: [...this.state.todos, newTodo], newTodoDescription: ''  });
   }
 
+  //delete item from list
+  
+  deleteTodo(index) {
+  this.setState({ 
+      todos: this.state.todos.filter(index => { 
+      return this.todo !== index;
+      })
+    })
+  }
+  
+
+  
    toggleComplete(index) {
     const todos = this.state.todos.slice();
     const todo = todos[index];
     todo.isCompleted = todo.isCompleted ? false : true;
     this.setState({ todos: todos });
-
-  }
+    }
  
    render() {
      return (
@@ -52,17 +53,19 @@ class App extends Component {
          <ul>
            { this.state.todos.map( (todo, index) => 
             <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } 
-            toggleComplete={ () => this.toggleComplete(index) } />
-           )}
+            toggleComplete={ () => this.toggleComplete(index) } 
+            onDelete={ this.deleteTodo }/>
+           )} 
+          
          </ul>
          <form onSubmit={ (e) => this.handleSubmit(e) }>
            <input type="text" value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) } />
            <input type="submit" />
-         </form>  
+         </form> 
        </div>
      );
    }
  }
 
- export default App;
+export default App;
  
