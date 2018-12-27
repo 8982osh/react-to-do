@@ -37,6 +37,7 @@ class App extends Component {
 //    })
 //  }
   
+//delete item by description  
 //  deleteToDo(description) {
 //    this.setState({
 //      todos: this.state.todos.filter((todo, index) => 
