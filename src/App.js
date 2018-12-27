@@ -14,7 +14,7 @@ class App extends Component {
         ],
         newTodoDescripton: ''
       }; 
-      this.deleteTodo = this.deleteTodo.bind(this); //binding necessary to make this work in callback  
+      this.deleteToDo = this.deleteToDo.bind(this); //binding necessary to make this work in callback  
    }
 
   handleChange(e) {
@@ -28,16 +28,26 @@ class App extends Component {
     this.setState({ todos: [...this.state.todos, newTodo], newTodoDescription: ''  });
   }
 
-  //delete item from list
+//delete item from list based on index
+//  deleteTodo(index) {
+//  this.setState({ 
+//      todos: this.state.todos.filter(index => { 
+//      return this.todo !== index;
+//      })
+//    })
+//  }
   
-  deleteTodo(index) {
-  this.setState({ 
-      todos: this.state.todos.filter(index => { 
-      return this.todo !== index;
-      })
-    })
-  }
-  
+//  deleteToDo(description) {
+//    this.setState({
+//      todos: this.state.todos.filter((todo, index) => 
+//      todos.description !==description)
+//  });
+//  }
+
+    deleteToDo(description) {
+          const newTodos = this.state.todos.filter((todo, index) => todo.description !== description);
+            this.setState({todos: newTodos}); //set new state of array
+          }
 
   
    toggleComplete(index) {
@@ -54,7 +64,9 @@ class App extends Component {
            { this.state.todos.map( (todo, index) => 
             <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } 
             toggleComplete={ () => this.toggleComplete(index) } 
-            onDelete={ this.deleteTodo }/>
+            //deleteToDo = { this.description }
+            //onDelete={ this.deleteToDo }/>
+            deleteToDo = {this.deleteToDo} />
            )} 
           
          </ul>
