@@ -28,23 +28,7 @@ class App extends Component {
     this.setState({ todos: [...this.state.todos, newTodo], newTodoDescription: ''  });
   }
 
-//delete item from list based on index
-//  deleteTodo(index) {
-//  this.setState({ 
-//      todos: this.state.todos.filter(index => { 
-//      return this.todo !== index;
-//      })
-//    })
-//  }
-  
-//delete item by description  
-//  deleteToDo(description) {
-//    this.setState({
-//      todos: this.state.todos.filter((todo, index) => 
-//      todos.description !==description)
-//  });
-//  }
-
+    //delete item by description
     deleteToDo(description) {
           const newTodos = this.state.todos.filter((todo, index) => todo.description !== description);
             this.setState({todos: newTodos}); //set new state of array
@@ -65,8 +49,6 @@ class App extends Component {
            { this.state.todos.map( (todo, index) => 
             <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } 
             toggleComplete={ () => this.toggleComplete(index) } 
-            //deleteToDo = { this.description }
-            //onDelete={ this.deleteToDo }/>
             deleteToDo = {this.deleteToDo} />
            )} 
           
